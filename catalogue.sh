@@ -17,5 +17,5 @@ systemctl enable catalogue
 systemctl start catalogue
 
 dnf install mongodb-mongosh -y
-mongosh --host mongodb.dev.renuka.online</app/db/master-data.js
+mongosh --host mongo.dev.renuka.online </app/db/master-data.js
 
