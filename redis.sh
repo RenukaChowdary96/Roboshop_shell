@@ -6,4 +6,3 @@ sed -i '/protected mode/ c protected-mode no' /etc/redis/redis.conf
 systemctl enable redis
 systemctl restart redis
 
-#
