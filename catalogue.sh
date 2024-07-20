@@ -1,5 +1,6 @@
 source common.sh
-componet = catalogue
+component=catalogue
+
 NODEJS
 
 
