@@ -3,7 +3,9 @@ component=catalogue
 
 NODEJS
 
+echo install mongodb cilent
+dnf install mongodb-mongosh -y &>$LOG_FILE
 
-dnf install mongodb-mongosh -y
-mongosh --host mongo.dev.renuka.online </app/db/master-data.js
+echo load master data
+mongosh --host mongo.dev.renuka.online </app/db/master-data.js &>$LOG_FILE
 
