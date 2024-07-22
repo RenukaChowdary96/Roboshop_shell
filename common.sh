@@ -1,4 +1,5 @@
 LOG_FILE=/tmp/Roboshop.log
+rm -f $LOG_FILE
 NODEJS () {
 
   echo disable nodejs default version
