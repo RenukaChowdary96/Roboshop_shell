@@ -8,7 +8,7 @@ NODEJS () {
   dnf module enable nodejs:20 -y &>>$LOG_FILE
 
   echo install nodejs
-  dnf install nodejs -y &>$LOG_FILE
+  dnf install nodejs -y &>>$LOG_FILE
 
   echo copy service file
   cp ${component}.service /etc/systemd/system/${component}.service &>>$LOG_FILE
@@ -36,6 +36,6 @@ NODEJS () {
   echo install nodejs dependcies
   npm install &>>$LOG_FILE
   systemctl daemon-reload &>>$LOG_FILE
-  systemctl enable ${component}&>>$LOG_FILE
-  systemctl restart ${component}&>>$LOG_FILE
+  systemctl enable ${component} &>>$LOG_FILE
+  systemctl restart ${component} &>>$LOG_FILE
 }
