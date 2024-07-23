@@ -21,12 +21,13 @@ STAT() {
 }
 APP_PREREQUISTES(){
   PRINT Remove old content
+  rm -rf ${app_path} &>>$LOG_FILE
   mkdir ${app_path} &>>$LOG_FILE
   STAT $?
 
   PRINT Create App Directory
-    rm -rf ${app_path} &>>$LOG_FILE
-    STAT $?
+  mkdir ${app_path} &>>$LOG_FILE
+  STAT $?
 
   PRINT Download Application Content
      curl -o /tmp/{component}.zip https://roboshop-artifacts.s3.amazonaws.com/{component}-v3.zip &>>$LOG_FILE
