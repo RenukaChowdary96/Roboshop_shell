@@ -68,7 +68,7 @@ STAT $?
   STAT $?
   PRINT  install nodejs dependcies
   npm install &>>$LOG_FILE
- STAT $?
+
   systemctl daemon-reload &>>$LOG_FILE
   systemctl enable ${component} &>>$LOG_FILE
   systemctl restart ${component} &>>$LOG_FILE
