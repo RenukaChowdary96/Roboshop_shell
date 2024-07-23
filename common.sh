@@ -7,111 +7,71 @@ PRINT() {
   echo "###############################$*###############################" &>>$LOG_FILE
   echo $*
 }
+
+STAT() {
+  if [ $1 -eq 0 ]; then
+    echo SUCCESS
+  else
+    echo FAILURE
+  fi
+
+}
 NODEJS () {
 
   PRINT disable nodejs default version
   dnf module disable nodejs -y &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-    echo SUCCESS
-  else
-    echo FALIURE
-  fi
+  STAT $?
 
   PRINT  enable nojejs 20 module
   dnf module enable nodejs:20 -y &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+  STAT $?
 
 
   PRINT  install nodejs
   dnf install nodejs -y &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+ STAT $?
 
 
   PRINT  copy service file
   cp ${component}.service /etc/systemd/system/${component}.service &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+  STAT $?
 
 
   PRINT  copy mongodb repo file
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+  STAT $?
 
 
   PRINT  adding application user
   useradd roboshop &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+ STAT $?
 
 
   PRINT  cleaning old content
   rm -rf /app &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-  fi
+  STAT $?
 
 
   PRINT  create app directory
   mkdir /app &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+STAT $?
 
 
   PRINT  download app content
   curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+  STAT $?
 
   cd /app
 
   PRINT  extract app content
   unzip /tmp/${component}.zip &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-     fi
+  STAT $?
   PRINT  install nodejs dependcies
   npm install &>>$LOG_FILE
-  if [ $? -eq 0 ];then
-      echo SUCCESS
-    else
-      echo FALIURE
-     fi
-
+ STAT $?
   systemctl daemon-reload &>>$LOG_FILE
   systemctl enable ${component} &>>$LOG_FILE
   systemctl restart ${component} &>>$LOG_FILE
-  if [ $? -eq 0 ]; then
-      echo SUCCESS
-    else
-      echo FALIURE
-    fi
+  STAT $?
 
 }
