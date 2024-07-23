@@ -9,6 +9,7 @@ if [ $? -eq 0];then
     echo SUCCESS
   else
     echo FALIURE
+  fi
 
 
 echo load master data
@@ -17,5 +18,6 @@ if [ $? -eq 0];then
     echo SUCCESS
   else
     echo FALIURE
+    fi
 
 
