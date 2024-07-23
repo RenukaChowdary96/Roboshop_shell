@@ -92,7 +92,7 @@ NODEJS () {
 
   PRINT  extract app content
   unzip /tmp/${component}.zip &>>$LOG_FILE
-  if [ $? -eq 0]; then
+  if [ $? -eq 0 ]; then
       echo SUCCESS
     else
       echo FALIURE
