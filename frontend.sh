@@ -19,7 +19,7 @@ PRINT Copy nginx config file
 cp nginx.conf /etc/nginx/nginx.conf  &>>$LOG_FILE
 STAT $?
 
-APP_PREREQUISTES
+APP_PREREQ
 
 PRINT Start Nginx Service
 systemctl enable nginx  &>>$LOG_FILE

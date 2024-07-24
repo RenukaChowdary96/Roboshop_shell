@@ -15,4 +15,5 @@ STAT $?
 
 PRINT Start MongoDB Service
 systemctl enable mongod &>>$LOG_FILE
-systemctl restart mongod
+systemctl restart mongod &>>$LOG_FILE
+STAT $?

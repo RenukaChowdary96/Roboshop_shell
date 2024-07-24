@@ -20,7 +20,7 @@ STAT() {
   fi
 }
 
-APP_PREREQUISTES() {
+APP_PREREQ() {
   PRINT Adding Application User
   id roboshop &>>$LOG_FILE
   if [ $? -ne 0 ]; then
@@ -71,7 +71,7 @@ NODEJS() {
   dnf install nodejs -y &>>$LOG_FILE
   STAT $?
 
-  APP_PREREQUISTES
+  APP_PREREQ
 
   PRINT Download NodeJS Dependencies
   npm install &>>$LOG_FILE
@@ -89,7 +89,7 @@ JAVA() {
   dnf install maven -y &>>$LOG_FILE
   STAT $?
 
-  APP_PREREQUISTES
+  APP_PREREQ
 
   PRINT Download Dependencies
   mvn clean package &>>$LOG_FILE
