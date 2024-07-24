@@ -1,6 +1,6 @@
 source common.sh
 component=redis
-app_path=/app
+
 
 PRINT Disbale redis default
 dnf module disable redis -y &>>$LOG_FILE
