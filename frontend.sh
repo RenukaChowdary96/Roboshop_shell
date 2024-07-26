@@ -3,15 +3,15 @@ component=frontend
 app_path=/usr/share/nginx/html
 
 
-PRINT Disable Nginx default Version
+- name: Disable Nginx default Version
 dnf module disable nginx -y  &>>$LOG_FILE
 STAT $?
 
-PRINT Enable Nginx 24 Version
+- name: Enable Nginx 24 Version
 dnf module enable nginx:1.24 -y  &>>$LOG_FILE
 STAT $?
 
-PRINT Install Nginx
+- name: Install Nginx
 dnf install nginx -y  &>>$LOG_FILE
 STAT $?
 
